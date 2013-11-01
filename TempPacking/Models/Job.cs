@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TempPacking.Data;
 
 namespace TempPacking.Models
 {
@@ -13,6 +14,13 @@ namespace TempPacking.Models
         public string Salary { get; set; }
         public string Duration { get; set; }
         public JobCategory Category { get; set; }
+        public Location Location { get; set; }
+        public IList<string> Skills { get; set; }
+
+        public Job()
+        {
+            Skills = new List<string>();
+        }
     }
 
     public enum JobCategory
@@ -20,5 +28,11 @@ namespace TempPacking.Models
         Building = 1,
         Hospitality = 2,
         IT = 3
+    }
+
+    public class Location
+    {
+        public double Long { get; set; }
+        public double Lat { get; set; }
     }
 }
