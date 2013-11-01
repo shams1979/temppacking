@@ -3,18 +3,21 @@
         this.options = options;
         var thisObj = this;
         
-
+        
         var elements = {
-            globeContainer: $("#globe"),
+            globeContainer: $("#content"),
             optionsContainer: $("#tripOptions"),
 
-            countries: $("#country"),
             skill: $('#skill'),
-            destination: $("#country")
+            destination: $("#country"),
+            intro: $("#intro"),
+            results: $("#results"),
+            button: $("#go")
         };
         var viewModel = {
             skills: ko.observableArray([]),
             destinations: ko.observableArray([]),
+            showResults: ko.observable(false),
             addSkill: function () {
                 if (thisObj.elements.skill.val() != "") {
                     thisObj.viewModel.skills.push({ name: thisObj.elements.skill.val() });
@@ -42,7 +45,6 @@
             
         };
 
-
         this.elements = elements;
         this.viewModel = viewModel;
 
@@ -50,6 +52,18 @@
         
         initCountryLoad(thisObj);
         initSkillsLoad(thisObj);
+
+        thisObj.viewModel.showResults.subscribe(function(newValue) {
+            if (newValue) {
+                thisObj.elements.globeContainer.css("background-image", 'url("/Content/images/bg-02.jpg")');
+            } else {
+                thisObj.elements.globeContainer.css("background-image", "/Content/images/bg-01.jpg");
+            }
+        });
+
+        thisObj.elements.button.on("click", function () {
+            thisObj.viewModel.showResults(true);
+        });
 
     };
 

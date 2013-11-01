@@ -26,7 +26,7 @@
     margin-bottom: 10px;
     
 }
-#globe {
+#content {
     position: absolute;
     padding: 20px 20px 20px 340px;
     top: 0;
@@ -128,3 +128,36 @@
     font-size: 26px;
 }
 
+
+
+#intro {
+    color: #fff;
+    position: relative;
+}
+#intro .box {
+    position: absolute;
+    left: 280px;
+    top: 135px;
+    width: 700px;
+}
+.welcome-title {
+    margin-top: 30px;
+}
+#intro p {
+    margin-top: 40px;
+}
+.logo-big {
+    position: absolute;
+    top: 0;
+    right: 50px;
+}
+#content {
+    background: url("/Content/images/bg-01.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+#results {
+    
+}
