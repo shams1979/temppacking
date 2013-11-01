@@ -1,1 +1,24 @@
-﻿
+﻿#tripOptions {
+    position: absolute;
+    display: block;
+    width: 300px;
+    height: 100%;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    background: #ccccc0;
+    z-index: 100;
+    -webkit-box-shadow: 2px 0px 1px rgba(50, 50, 50, 0.15);
+    -moz-box-shadow:    2px 0px 1px rgba(50, 50, 50, 0.15);
+    box-shadow:         2px 0px 1px rgba(50, 50, 50, 0.15);
+}
+
+#globe {
+    position: absolute;
+    padding: 20px 20px 20px 340px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+}
