@@ -2,6 +2,29 @@
     ViewBag.Title = "Temppacking";
 }
 
+<nav id="tripOptions">
+    <div class="form-group">
+        <label for="skill">Skills</label>
+        <input type="text" class="form-control" id="skill" placeholder="Enter your skill" />
+    </div>
+    <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country" placeholder="Enter country name"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
+    </div>
+
+    <div class="form-inline">
+        <span class="country-name">GB</span>
+        <input type="text" class="form-control date-from" id="" placeholder="" />
+        <input type="text" class="form-control date-to" id="" placeholder="" />
+    </div>
+        
+</nav>
+<aside id="globe">
+    Earth
+
+</aside>
+
+
 @section scripts
 {
     
