@@ -12,11 +12,14 @@
             destination: $("#country"),
             intro: $("#intro"),
             results: $("#results"),
-            button: $("#go")
+            button: $("#go"),
+            prev: $("#prev"),
+            next: $("#next")
         };
         var viewModel = {
             skills: ko.observableArray([]),
             destinations: ko.observableArray([]),
+            currentDestination: ko.observable(0),
             showResults: ko.observable(false),
             addSkill: function () {
                 if (thisObj.elements.skill.val() != "") {
@@ -66,6 +69,23 @@
             } else {
                 thisObj.viewModel.showResults(true);
             }
+        });
+
+        thisObj.elements.prev.on("click", function() {
+            var goTo = (thisObj.viewModel.currentDestination() - 1 < 0) ? thisObj.viewModel.destinations().length - 1 : thisObj.viewModel.currentDestination() - 1;
+            thisObj.viewModel.currentDestination(goTo);
+            
+            console.log(goTo);
+            
+
+        });
+        
+        thisObj.elements.next.on("click", function () {
+            var goTo = (thisObj.viewModel.currentDestination() + 1 > thisObj.viewModel.destinations().length - 1) ? 0 : thisObj.viewModel.currentDestination() + 1;
+            thisObj.viewModel.currentDestination(goTo);
+            
+            console.log(goTo);
+
         });
 
     };

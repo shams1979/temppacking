@@ -159,5 +159,22 @@
         background-size: cover;
 }
 #results {
+    position: relative;
+    height: 100%;
+}
+#earth {
     
+}
+.arrow-left,
+.arrow-right {
+    position: absolute;
+    top: 50%;
+    margin-top: -31px;
+    cursor: pointer;
+}
+.arrow-left {
+    left: 0;
+}
+.arrow-right {
+    right: 0;
 }

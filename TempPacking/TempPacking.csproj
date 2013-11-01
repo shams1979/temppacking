@@ -196,8 +196,17 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\arrow-left.png" />
+    <Content Include="Content\images\arrow-right.png" />
     <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\bg-01.jpg" />
+    <Content Include="Content\images\bg-02.jpg" />
+    <Content Include="Content\images\big-logo.png" />
+    <Content Include="Content\images\construction.png" />
+    <Content Include="Content\images\hospitality.png" />
+    <Content Include="Content\images\it.png" />
     <Content Include="Content\images\temppacker-logo.png" />
+    <Content Include="Content\images\welcome.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
