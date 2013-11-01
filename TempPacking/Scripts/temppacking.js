@@ -1,4 +1,4 @@
-﻿temppacking.index = function() {
+﻿temppacking = function() {
     var init = function(options) {
         this.options = options;
 
