@@ -49,36 +49,47 @@ namespace TempPacking.Controllers
            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetJobs(string city, double longitude, double latitude, string startDate, string endDate, IList<string> skills)
+        [HttpPost]
+        public JsonResult GetJobs(string city, double longitude, double latitude, string startDate, string endDate, string skills)
         {
             DateTime parsedStartDate;
             var parsedStart = DateTime.TryParse(startDate, out parsedStartDate);
             DateTime parsedEndDate;
             var parsedEnd = DateTime.TryParse(endDate, out parsedEndDate);
 
-            if(!parsedStart || !parsedEnd)
-                return Json(new { success = false, error = "Invalid start or end date." }, JsonRequestBehavior.AllowGet);
+            //if(!parsedStart || !parsedEnd)
+            //    return Json(new { success = false, error = "Invalid start or end date." });
 
-            if (parsedEndDate <= parsedStartDate)
-                return Json(new { success = false, error = "End date cannot be greater than start date" }, JsonRequestBehavior.AllowGet);
+            //if (parsedEndDate <= parsedStartDate)
+            //    return Json(new { success = false, error = "End date cannot be greater than start date" });
 
-            if(skills.Count <= 0)
-                return Json(new { success = false, error = "Please enter at least one skill" }, JsonRequestBehavior.AllowGet);
+            if(string.IsNullOrEmpty(skills))
+                return Json(new { success = false, error = "Please enter at least one skill" });
 
-            if (Itinerary.Any())
-            {
-                var maxDate = Itinerary.Max(x => x.EndDate);
+            var splitSkills = skills.Split(',');
+            
+            if(splitSkills.Length <= 0)
+                return Json(new { success = false, error = "Please enter at least one skill" });
 
-                if (parsedEndDate < maxDate || parsedStartDate < maxDate)
-                    return Json(new { success = false, error = "Your dates can't be used with the current itinerary." }, JsonRequestBehavior.AllowGet);
-            }
+            var skillObjs = new List<Skill>();
 
-            var jobs = jobRepo.GetJobs(longitude, latitude, skills);
+            foreach(var s in splitSkills)
+                skillObjs.Add(new Skill{name = s});
+
+            //if (Itinerary.Any())
+            //{
+            //    var maxDate = Itinerary.Max(x => x.EndDate);
+
+            //    if (parsedEndDate < maxDate || parsedStartDate < maxDate)
+            //        return Json(new { success = false, error = "Your dates can't be used with the current itinerary." });
+            //}
+
+            var jobs = jobRepo.GetJobs(longitude, latitude, skillObjs);
 
             var itineraryStep = new ItineraryStep
                                     {
                                         City = city,
-                                        Skills = skills,
+                                        Skills = skillObjs,
                                         Latitude = latitude,
                                         Longitude = longitude,
                                         StartDate = parsedStartDate,
@@ -88,7 +99,7 @@ namespace TempPacking.Controllers
 
             Itinerary.Add(itineraryStep);
 
-            return Json(new {success = true, itinerary = JsonConvert.SerializeObject(Itinerary)}, JsonRequestBehavior.AllowGet);
+            return Json(new {success = true, itinerary = JsonConvert.SerializeObject(Itinerary)});
         }
     }
 
@@ -100,6 +111,11 @@ namespace TempPacking.Controllers
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public IEnumerable<Job> Jobs { get; set; }
-        public IList<string> Skills { get; set; } 
+        public IList<Skill> Skills { get; set; } 
+    }
+
+    public class Skill
+    {
+        public string name { get; set; }
     }
 }

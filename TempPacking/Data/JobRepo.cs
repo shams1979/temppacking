@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TempPacking.Controllers;
 using TempPacking.Models;
 
 namespace TempPacking.Data
@@ -21,10 +22,10 @@ namespace TempPacking.Data
                              Id = 1,
                              Salary = "£10/hr",
                              Title = "Electrician needed",
-                             Skills = new List<string>{  "Bricklayer",
-                                               "Plumber",
-                                               "Electrician",
-                                               "Builder",}
+                             Skills = new List<Skill>{  new Skill{name = "Bricklayer"},
+                                               new Skill{name = "Plumber"},
+                                               new Skill{name = "Electrician"},
+                                               new Skill{name = "Builder"}}
                          });
 
             jobs.Add(new Job()
@@ -35,9 +36,9 @@ namespace TempPacking.Data
                 Id = 2,
                 Salary = "£9/hr",
                 Title = "Waiter urgently needed",
-                Skills = new List<string> {  "Waiter",
-                                               "Barman",
-                                               "Receptionist" }
+                Skills = new List<Skill> {  new Skill{name = "Waiter"},
+                                               new Skill{name = "Barman"},
+                                               new Skill{name = "Receptionist" }}
             });
 
             jobs.Add(new Job()
@@ -48,12 +49,12 @@ namespace TempPacking.Data
                 Id = 3,
                 Salary = "£15/hr",
                 Title = "SQL Server developer needed",
-                Skills = new List<string> { "Developer",
-                                               "SQL Developer",
-                                               "Frontend",
-                                                "C#",
-                                                "Java",
-                                                "PHP", }
+                Skills = new List<Skill> {  new Skill{name = "Developer"},
+                                               new Skill{name = "SQL Developer"},
+                                               new Skill{name = "Frontend"},
+                                                new Skill{name = "C#"},
+                                                new Skill{name = "Java"},
+                                                new Skill{name = "PHP"} }
             });
 
             jobs.Add(new Job()
@@ -64,10 +65,10 @@ namespace TempPacking.Data
                 Id = 4,
                 Salary = "£6/hr",
                 Title = "Bricklayer required",
-                Skills = new List<string> {  "Bricklayer",
-                                               "Plumber",
-                                               "Electrician",
-                                               "Builder", }
+                Skills = new List<Skill>{  new Skill{name = "Bricklayer"},
+                                               new Skill{name = "Plumber"},
+                                               new Skill{name = "Electrician"},
+                                               new Skill{name = "Builder"}}
             });
 
             jobs.Add(new Job()
@@ -78,12 +79,12 @@ namespace TempPacking.Data
                 Id = 1,
                 Salary = "£50/hr",
                 Title = "Developer for Reed",
-                Skills = new List<string> {  "Developer",
-                                               "SQL Developer",
-                                               "Frontend",
-                                                "C#",
-                                                "Java",
-                                                "PHP", }
+                Skills = new List<Skill> {  new Skill{name = "Developer"},
+                                               new Skill{name = "SQL Developer"},
+                                               new Skill{name = "Frontend"},
+                                                new Skill{name = "C#"},
+                                                new Skill{name = "Java"},
+                                                new Skill{name = "PHP"} }
             });
 
             jobs.Add(new Job()
@@ -94,9 +95,9 @@ namespace TempPacking.Data
                 Id = 1,
                 Salary = "£62/hr",
                 Title = "Hotel manager",
-                Skills = new List<string> {  "Waiter",
-                                               "Barman",
-                                               "Receptionist" }
+                Skills = new List<Skill> {  new Skill{name = "Waiter"},
+                                               new Skill{name = "Barman"},
+                                               new Skill{name = "Receptionist" }}
             });
 
             jobs.Add(new Job()
@@ -107,12 +108,12 @@ namespace TempPacking.Data
                 Id = 1,
                 Salary = "£20/hr",
                 Title = "System administrator",
-                Skills = new List<string> {  "Developer",
-                                               "SQL Developer",
-                                               "Frontend",
-                                                "C#",
-                                                "Java",
-                                                "PHP", }
+                Skills = new List<Skill> {  new Skill{name = "Developer"},
+                                               new Skill{name = "SQL Developer"},
+                                               new Skill{name = "Frontend"},
+                                                new Skill{name = "C#"},
+                                                new Skill{name = "Java"},
+                                                new Skill{name = "PHP"} }
             });
 
             jobs.Add(new Job()
@@ -123,10 +124,10 @@ namespace TempPacking.Data
                 Id = 1,
                 Salary = "£100/hr",
                 Title = "Architect",
-                Skills = new List<string> { "Bricklayer",
-                                               "Plumber",
-                                               "Electrician",
-                                               "Builder" }
+                Skills = new List<Skill>{  new Skill{name = "Bricklayer"},
+                                               new Skill{name = "Plumber"},
+                                               new Skill{name = "Electrician"},
+                                               new Skill{name = "Builder"}}
             });
 
             jobs.Add(new Job()
@@ -137,12 +138,12 @@ namespace TempPacking.Data
                 Id = 1,
                 Salary = "£15/hr",
                 Title = "Tester",
-                Skills = new List<string> {  "Developer",
-                                               "SQL Developer",
-                                               "Frontend",
-                                                "C#",
-                                                "Java",
-                                                "PHP", }
+                Skills = new List<Skill> {  new Skill{name = "Developer"},
+                                               new Skill{name = "SQL Developer"},
+                                               new Skill{name = "Frontend"},
+                                                new Skill{name = "C#"},
+                                                new Skill{name = "Java"},
+                                                new Skill{name = "PHP"} }
             });
 
             jobs.Add(new Job()
@@ -153,16 +154,16 @@ namespace TempPacking.Data
                 Id = 1,
                 Salary = "£8/hr",
                 Title = "Cleaner",
-                Skills = new List<string> {   "Waiter",
-                                               "Barman",
-                                               "Receptionist" }
+                Skills = new List<Skill> {  new Skill{name = "Waiter"},
+                                               new Skill{name = "Barman"},
+                                               new Skill{name = "Receptionist" }}
             });
         }
 
-        public IEnumerable<Job> GetJobs(double longitude, double latitude, IList<string> skills)
+        public IEnumerable<Job> GetJobs(double longitude, double latitude, IList<Skill> skills)
         {
             var rnd = new Random();
-            var results = jobs.Where(job => job.Skills.Select(x => x.ToLower()).Intersect(skills.Select(x => x.ToLower())).Any()).ToList();
+            var results = jobs.Where(job => job.Skills.Select(x => x.name.ToLower()).Intersect(skills.Select(x => x.name.ToLower())).Any()).ToList();
             foreach (var j in results)
                 j.Location = GetLocation(rnd, longitude, latitude, 16000);
             return results;

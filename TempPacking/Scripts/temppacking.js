@@ -2,7 +2,9 @@
     var init = function(options) {
         this.options = options;
         var thisObj = this;
-        
+
+        this.longitude = 0;
+        this.latitude = 0;
         
         var elements = {
             globeContainer: $("#content"),
@@ -31,8 +33,32 @@
             },
             addDestination: function () {
                 if (thisObj.elements.destination.val() != "") {
-                thisObj.viewModel.destinations.push({ name: thisObj.elements.destination.val(), from: '', to: '' });
+                thisObj.viewModel.destinations.push({ name: thisObj.elements.destination.val(), from: '', to: '', longitude: thisObj.longitude, latitude: thisObj.latitude, jobs: [] });
                 thisObj.elements.destination.val("");
+                    // ajax call
+                var skillsString = "";
+                for (var i = 0; i < thisObj.viewModel.skills().length; i++) {
+                    skillsString += thisObj.viewModel.skills()[i].name + ',';
+                }
+                skillsString = skillsString.substring(0, skillsString.length - 1);
+
+                $.ajax({
+                    url: '/home/getjobs',
+                    type: 'POST',
+                    data: {
+                        longitude: thisObj.viewModel.destinations()[0].longitude,
+                        latitude: thisObj.viewModel.destinations()[0].latitude,
+                        startdate: thisObj.viewModel.destinations()[0].from,
+                        enddate: thisObj.viewModel.destinations()[0].to,
+                        city: thisObj.viewModel.destinations()[0].name,
+                        skills: skillsString
+                    },
+                    success: function (response) {
+                        thisObj.viewModel.destinations()[0].jobs = response.jobs;
+                    }
+
+                }
+                );
                 } else {
                     alert("Enter a destination!");
                 }
@@ -65,7 +91,7 @@
                 alert("Add some skills and give me some destinations!");
             } else {
                 thisObj.viewModel.showResults(true);
-            }
+             }
         });
 
     };
@@ -85,7 +111,16 @@
 
         var autocomplete = new google.maps.places.Autocomplete(document.getElementById('country'));
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            console.log(thisObj.elements.countries.val());
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': thisObj.elements.destination.val() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var locInfo = results[0].geometry.location;
+                    thisObj.latitude = locInfo.lb;
+                    thisObj.longitude = locInfo.mb;
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
         });
 
       

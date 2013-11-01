@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TempPacking.Controllers;
 using TempPacking.Data;
 
 namespace TempPacking.Models
@@ -15,11 +16,11 @@ namespace TempPacking.Models
         public string Duration { get; set; }
         public JobCategory Category { get; set; }
         public Location Location { get; set; }
-        public IList<string> Skills { get; set; }
+        public IList<Skill> Skills { get; set; }
 
         public Job()
         {
-            Skills = new List<string>();
+            Skills = new List<Skill>();
         }
     }
 
