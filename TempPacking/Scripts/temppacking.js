@@ -36,8 +36,7 @@
                 } else {
                     alert("Enter a destination!");
                 }
-                
-},
+            },
             removeDestination: function () {
                 thisObj.viewModel.destinations.remove(this);
             }
@@ -62,7 +61,11 @@
         });
 
         thisObj.elements.button.on("click", function () {
-            thisObj.viewModel.showResults(true);
+            if (thisObj.viewModel.skills().length < 1 || thisObj.viewModel.destinations().length < 1) {
+                alert("Add some skills and give me some destinations!");
+            } else {
+                thisObj.viewModel.showResults(true);
+            }
         });
 
     };
@@ -98,7 +101,18 @@
         thisObj.elements.skill.bind('typeahead:selected', function (obj, datum) {
             thisObj.elements.skill.val(datum.value);
         });
-        
+
+        thisObj.elements.skill.on("keypress", function(e) {
+            if (e.which == 13) {
+                thisObj.viewModel.addSkill();
+            }
+        });
+
+        thisObj.elements.destination.on("keypress", function (e) {
+            if (e.which == 13) {
+                thisObj.viewModel.addDestination();
+            }
+        });
 
 
     };
