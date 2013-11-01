@@ -44,13 +44,12 @@ namespace TempPacking.Controllers
             if (query.Length < 3)
                 return Json(false, JsonRequestBehavior.AllowGet);
 
-            var data = SkilRepo.GetSkills().Where(x => x.ToLower().StartsWith(query.ToLower())).Select(x => x);
+            var data = SkilRepo.GetSkills().Where(x => x.ToLower().StartsWith(query.ToLower())).Select(x => x).ToList();
             
-
-           return Json(new { suggestions = data}, JsonRequestBehavior.AllowGet);
+           return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetJobs(double longitude, double latitude, string startDate, string endDate, IList<string> skills)
+        public JsonResult GetJobs(string city, double longitude, double latitude, string startDate, string endDate, IList<string> skills)
         {
             DateTime parsedStartDate;
             var parsedStart = DateTime.TryParse(startDate, out parsedStartDate);
@@ -78,6 +77,7 @@ namespace TempPacking.Controllers
 
             var itineraryStep = new ItineraryStep
                                     {
+                                        City = city,
                                         Skills = skills,
                                         Latitude = latitude,
                                         Longitude = longitude,
@@ -94,6 +94,7 @@ namespace TempPacking.Controllers
 
     public class ItineraryStep
     {
+        public string City { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public DateTime StartDate { get; set; }
