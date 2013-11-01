@@ -9,17 +9,27 @@
             optionsContainer: $("#tripOptions"),
 
             countries: $("#country"),
-            skills: $('#skill')
+            skill: $('#skill'),
+            destination: $("#country")
         };
         var viewModel = {
-            skills: ko.observableArray([{name: "GB"}]),
+            skills: ko.observableArray([]),
+            destinations: ko.observableArray([]),
             addSkill: function() {
                 thisObj.viewModel.skills.push({ name: thisObj.elements.skill.val() });
                 thisObj.elements.skill.val("");
             },
             removeSkill: function() {
                 thisObj.viewModel.skills.remove(this);
+            },
+            addDestination: function () {
+                thisObj.viewModel.destinations.push({ name: thisObj.elements.destination.val(), from: '', to: '' });
+                thisObj.elements.destination.val("");
+            },
+            removeDestination: function () {
+                thisObj.viewModel.destinations.remove(this);
             }
+
             
         };
 
@@ -52,12 +62,12 @@
     
     var initSkillsLoad = function (thisObj) {
        
-        thisObj.elements.skills.typeahead([{
+        thisObj.elements.skill.typeahead([{
             remote: "/home/findskill?query=%QUERY",
             limit: 5
         }]);
 
-        thisObj.elements.skills.bind('typeahead:selected', function (obj, datum) {
+        thisObj.elements.skill.bind('typeahead:selected', function (obj, datum) {
             value(datum);
         });
 

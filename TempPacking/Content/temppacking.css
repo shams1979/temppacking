@@ -1,4 +1,8 @@
-﻿#tripOptions {
+﻿body {
+    font-family: 'Lato';
+    font-size: 12px;
+}
+#tripOptions {
     position: absolute;
     display: block;
     width: 300px;
@@ -6,13 +10,22 @@
     padding: 20px;
     top: 0;
     left: 0;
-    background: #ccccc0;
+    background: #fff;
     z-index: 100;
     -webkit-box-shadow: 2px 0px 1px rgba(50, 50, 50, 0.15);
     -moz-box-shadow:    2px 0px 1px rgba(50, 50, 50, 0.15);
     box-shadow:         2px 0px 1px rgba(50, 50, 50, 0.15);
 }
-
+.instruct {
+    margin: 40px 0;
+}
+#tripOptions h2 {
+    font-weight: bold;
+    font-size: 25px;
+    color: #259ebf;
+    margin-bottom: 10px;
+    
+}
 #globe {
     position: absolute;
     padding: 20px 20px 20px 340px;
@@ -25,7 +38,7 @@
 
 .skills {
     position: relative;
-    margin: 20px 0;
+    padding: 20px 0;
 }
 
 .skill-label {
@@ -33,9 +46,67 @@
     position: relative;
     display: block;
     float: left;
+    font-size: 15px !important;
+    font-weight: normal !important;
 }
 .skill-label .remove {
     cursor: pointer;
     margin: 3px 0 3px 5px;
     display: inline-block;
+}
+
+.form-group {
+    border-bottom: 1px solid #cccccc;
+    margin-top: 40px;
+}
+
+.destinations {
+    margin-bottom: 20px;
+}
+
+.destination {
+    position: relative;
+    background: #dcf3bd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 5px;
+}
+.destination .country{
+    display: block;
+    color: #37570c;
+    font-weight: bold;
+    font-size: 13px;
+}
+.destination .from,
+.destination .to{
+    display: block;
+    float: left;
+    width: 115px;
+    margin-right: 10px;
+}
+.destination .title {
+    color: #72b716;
+}
+.destination .date-from, 
+.destination .date-to{
+    width: 115px !important;
+}
+.destination .remove{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #72b716;
+    padding: 0px 2px;
+    border: 1px solid #72b716;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.twitter-typeahead {
+    display: block !important;
+}
+.btn-danger {
+    font-size: 26px;
 }

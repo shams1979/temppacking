@@ -3,11 +3,12 @@
 }
 
 <nav id="tripOptions">
+    <img src="~/Content/images/temppacker-logo.png" />
+    <div class="instruct">Please fill the information  below so we can start tracking your jorney!</div>
     <div class="form-group">
-        <label for="skill">Skills</label>
-        
+        <h2>Skills</h2>
         <div class="input-group">
-            <input type="text" id="skill" class="form-control" placeholder="Enter your skill" />
+            <input type="text" id="skill" class="form-control" placeholder="Enter a skill, e.g. photography" />
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" data-bind="click: addSkill">+</button>
             </span>
@@ -21,15 +22,35 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="country">Country</label>
-        <input type="text" class="form-control" id="country" placeholder="Enter country name"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
+        <h2>Destinations </h2>
+        <div class="input-group">
+            <input type="text" class="form-control" id="country" placeholder="Enter a destination e.g. London"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" data-bind="click: addDestination">+</button>
+            </span>
+        </div>
+        <div class="destinations clearfix" data-bind="foreach: destinations">
+            <div class="destination clearfix">
+                <span class="country" data-bind="text: name"></span>
+                <div class="from">
+                    <span class="title">From</span>
+                    <input type="date" class="input-sm date-from" data-bind="value: from" />
+                </div>
+                <div class="to">
+                    <span class="title">To</span>
+                    <input type="date" class="input-sm date-to" data-bind="value: to" />
+                </div>
+                <span class="remove" data-bind="click: $parent.removeDestination">X</span>
+            </div>
+        </div>
     </div>
+    
+    
+    <button type="button" class="btn btn-danger">
+        View your journey&nbsp;&nbsp;
+        <img src="~/Content/images/arrow.png" />
+    </button>
 
-    <div class="form-inline">
-        <span class="country-name">GB</span>
-        <input type="text" class="form-control date-from" id="" placeholder="" />
-        <input type="text" class="form-control date-to" id="" placeholder="" />
-    </div>
         
 </nav>
 <aside id="globe">
