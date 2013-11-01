@@ -45,9 +45,8 @@ namespace TempPacking.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
 
             var data = SkilRepo.GetSkills().Where(x => x.ToLower().StartsWith(query.ToLower())).Select(x => x).ToList();
-            var data2 = from t in data select new {id = t, name = t};
-
-           return Json(new { suggestions = data2}, JsonRequestBehavior.AllowGet);
+            
+           return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetJobs(double longitude, double latitude, string startDate, string endDate, IList<string> skills)

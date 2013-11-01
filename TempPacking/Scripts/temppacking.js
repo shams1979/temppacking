@@ -1,4 +1,4 @@
-﻿temppacking = function() {
+﻿temppacking = function () {
     var init = function(options) {
         this.options = options;
         var thisObj = this;
