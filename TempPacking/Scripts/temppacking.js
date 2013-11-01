@@ -43,7 +43,8 @@
        
         thisObj.elements.skills.typeahead([{
             remote: "/home/findskill?query=%QUERY",
-            limit: 5
+            limit: 5,
+            valueKey : "name"
         }]);
 
         thisObj.elements.skills.bind('typeahead:selected', function (obj, datum) {
