@@ -73,7 +73,7 @@
         }]);
 
         thisObj.elements.skill.bind('typeahead:selected', function (obj, datum) {
-            value(datum);
+            thisObj.elements.skill.val(datum.value);
         });
         
 
