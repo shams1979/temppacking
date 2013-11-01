@@ -44,7 +44,10 @@ namespace TempPacking.Controllers
             if (query.Length < 3)
                 return Json(false, JsonRequestBehavior.AllowGet);
 
-           return Json(new { suggestions = SkilRepo.GetSkills().Where(x => x.ToLower().StartsWith(query.ToLower())).Select(x => x) }, JsonRequestBehavior.AllowGet);
+            var data = SkilRepo.GetSkills().Where(x => x.ToLower().StartsWith(query.ToLower())).Select(x => x);
+            
+
+           return Json(new { suggestions = data}, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetJobs(double longitude, double latitude, string startDate, string endDate, IList<string> skills)
