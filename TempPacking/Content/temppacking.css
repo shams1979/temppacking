@@ -157,7 +157,29 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
+         -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
 }
 #results {
+    position: relative;
+    height: 100%;
+}
+#earth {
     
+}
+.arrow-left,
+.arrow-right {
+    position: absolute;
+    top: 50%;
+    margin-top: -31px;
+    cursor: pointer;
+}
+.arrow-left {
+    left: 0;
+}
+.arrow-right {
+    right: 0;
 }
