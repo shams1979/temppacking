@@ -5,7 +5,20 @@
 <nav id="tripOptions">
     <div class="form-group">
         <label for="skill">Skills</label>
-        <input type="text" class="form-control" id="skill" placeholder="Enter your skill" />
+        
+        <div class="input-group">
+            <input type="text" id="skill" class="form-control" placeholder="Enter your skill" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" data-bind="click: addSkill">+</button>
+            </span>
+        </div>
+        <div class="skills clearfix" data-bind="foreach: skills">
+            <span class="skill-label label label-default">
+                <span data-bind="text: name"></span>
+                <span class="remove label label-danger" data-bind="click: $parent.removeSkill">X</span>
+                
+            </span>
+        </div>
     </div>
     <div class="form-group">
         <label for="country">Country</label>

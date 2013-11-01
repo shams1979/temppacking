@@ -22,3 +22,20 @@
     height: 100%;
     background: #ccc;
 }
+
+.skills {
+    position: relative;
+    margin: 20px 0;
+}
+
+.skill-label {
+    margin: 5px;
+    position: relative;
+    display: block;
+    float: left;
+}
+.skill-label .remove {
+    cursor: pointer;
+    margin: 3px 0 3px 5px;
+    display: inline-block;
+}
