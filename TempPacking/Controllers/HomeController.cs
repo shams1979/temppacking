@@ -33,6 +33,11 @@ namespace TempPacking.Controllers
             
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
 
         public JsonResult FindSkill(string query)
         {
