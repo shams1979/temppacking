@@ -85,19 +85,91 @@ namespace TempPacking.Data
                                                 "Java",
                                                 "PHP", }
             });
+
+            jobs.Add(new Job()
+            {
+                Category = JobCategory.Hospitality,
+                Description = "",
+                Duration = "2 weeks",
+                Id = 1,
+                Salary = "£62/hr",
+                Title = "Hotel manager",
+                Skills = new List<string> {  "Waiter",
+                                               "Barman",
+                                               "Receptionist" }
+            });
+
+            jobs.Add(new Job()
+            {
+                Category = JobCategory.IT,
+                Description = "",
+                Duration = "4 weeks",
+                Id = 1,
+                Salary = "£20/hr",
+                Title = "System administrator",
+                Skills = new List<string> {  "Developer",
+                                               "SQL Developer",
+                                               "Frontend",
+                                                "C#",
+                                                "Java",
+                                                "PHP", }
+            });
+
+            jobs.Add(new Job()
+            {
+                Category = JobCategory.Building,
+                Description = "",
+                Duration = "6 weeks",
+                Id = 1,
+                Salary = "£100/hr",
+                Title = "Architect",
+                Skills = new List<string> { "Bricklayer",
+                                               "Plumber",
+                                               "Electrician",
+                                               "Builder" }
+            });
+
+            jobs.Add(new Job()
+            {
+                Category = JobCategory.IT,
+                Description = "",
+                Duration = "3 weeks",
+                Id = 1,
+                Salary = "£15/hr",
+                Title = "Tester",
+                Skills = new List<string> {  "Developer",
+                                               "SQL Developer",
+                                               "Frontend",
+                                                "C#",
+                                                "Java",
+                                                "PHP", }
+            });
+
+            jobs.Add(new Job()
+            {
+                Category = JobCategory.Hospitality,
+                Description = "",
+                Duration = "2 weeks",
+                Id = 1,
+                Salary = "£8/hr",
+                Title = "Cleaner",
+                Skills = new List<string> {   "Waiter",
+                                               "Barman",
+                                               "Receptionist" }
+            });
         }
 
         public IEnumerable<Job> GetJobs(double longitude, double latitude, IList<string> skills)
         {
+            var rnd = new Random();
             var results = jobs.Where(job => job.Skills.Select(x => x.ToLower()).Intersect(skills.Select(x => x.ToLower())).Any()).ToList();
-            results.ForEach(x => x.Location = GetLocation(longitude, latitude, 16000));
+            foreach (var j in results)
+                j.Location = GetLocation(rnd, longitude, latitude, 16000);
             return results;
         }
 
-        public Location GetLocation(double x0, double y0, int radius)
+        public Location GetLocation(Random random, double x0, double y0, int radius)
         {
-            Random random = new Random();
-
             // Convert radius from meters to degrees
             double radiusInDegrees = radius / 111000f;
 
