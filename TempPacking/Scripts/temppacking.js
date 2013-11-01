@@ -3,28 +3,39 @@
         this.options = options;
         var thisObj = this;
         
-
+        
         var elements = {
-            globeContainer: $("#globe"),
+            globeContainer: $("#content"),
             optionsContainer: $("#tripOptions"),
 
-            countries: $("#country"),
             skill: $('#skill'),
-            destination: $("#country")
+            destination: $("#country"),
+            intro: $("#intro"),
+            results: $("#results"),
+            button: $("#go")
         };
         var viewModel = {
             skills: ko.observableArray([]),
             destinations: ko.observableArray([]),
-            addSkill: function() {
-                thisObj.viewModel.skills.push({ name: thisObj.elements.skill.val() });
-                thisObj.elements.skill.val("");
+            showResults: ko.observable(false),
+            addSkill: function () {
+                if (thisObj.elements.skill.val() != "") {
+                    thisObj.viewModel.skills.push({ name: thisObj.elements.skill.val() });
+                    thisObj.elements.skill.val("");
+                } else {
+                    alert("Enter a skill!");
+                }
             },
             removeSkill: function() {
                 thisObj.viewModel.skills.remove(this);
             },
             addDestination: function () {
+                if (thisObj.elements.destination.val() != "") {
                 thisObj.viewModel.destinations.push({ name: thisObj.elements.destination.val(), from: '', to: '' });
                 thisObj.elements.destination.val("");
+                } else {
+                    alert("Enter a destination!");
+                }
             },
             removeDestination: function () {
                 thisObj.viewModel.destinations.remove(this);
@@ -33,7 +44,6 @@
             
         };
 
-
         this.elements = elements;
         this.viewModel = viewModel;
 
@@ -41,6 +51,22 @@
         
         initCountryLoad(thisObj);
         initSkillsLoad(thisObj);
+
+        thisObj.viewModel.showResults.subscribe(function(newValue) {
+            if (newValue) {
+                thisObj.elements.globeContainer.css("background-image", 'url("/Content/images/bg-02.jpg")');
+            } else {
+                thisObj.elements.globeContainer.css("background-image", "/Content/images/bg-01.jpg");
+            }
+        });
+
+        thisObj.elements.button.on("click", function () {
+            if (thisObj.viewModel.skills().length < 1 || thisObj.viewModel.destinations().length < 1) {
+                alert("Add some skills and give me some destinations!");
+            } else {
+                thisObj.viewModel.showResults(true);
+            }
+        });
 
     };
 
@@ -75,7 +101,18 @@
         thisObj.elements.skill.bind('typeahead:selected', function (obj, datum) {
             thisObj.elements.skill.val(datum.value);
         });
-        
+
+        thisObj.elements.skill.on("keypress", function(e) {
+            if (e.which == 13) {
+                thisObj.viewModel.addSkill();
+            }
+        });
+
+        thisObj.elements.destination.on("keypress", function (e) {
+            if (e.which == 13) {
+                thisObj.viewModel.addDestination();
+            }
+        });
 
 
     };

@@ -3,7 +3,7 @@
 }
 
 <nav id="tripOptions">
-    <img src="~/Content/images/temppacker-logo.png" />
+    <a href="/"><img src="~/Content/images/temppacker-logo.png" /></a>
     <div class="instruct">Please fill the information  below so we can start tracking your jorney!</div>
     <div class="form-group">
         <h2>Skills</h2>
@@ -23,12 +23,15 @@
     </div>
     <div class="form-group">
         <h2>Destinations </h2>
-        <div class="input-group">
-            <input type="text" class="form-control" id="country" placeholder="Enter a destination e.g. London"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" data-bind="click: addDestination">+</button>
-            </span>
-        </div>
+        <fieldset>
+            <div class="input-group">
+                <input type="text" class="form-control" id="country" placeholder="Enter a destination e.g. London"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" data-bind="click: addDestination">+</button>
+                </span>
+            </div>
+        </fieldset>
+
         <div class="destinations clearfix" data-bind="foreach: destinations">
             <div class="destination clearfix">
                 <span class="country" data-bind="text: name"></span>
@@ -46,15 +49,30 @@
     </div>
     
     
-    <button type="button" class="btn btn-danger">
+    <button type="button" class="btn btn-danger" id="go">
         View your journey&nbsp;&nbsp;
         <img src="~/Content/images/arrow.png" />
     </button>
 
         
 </nav>
-<aside id="globe">
-    Earth
+<aside id="content">
+    <section id="intro" data-bind="visible: !showResults()">
+        <div class="box">
+            <div class="welcome-title">
+                <img src="~/Content/images/welcome.png" />
+            </div>
+            <div class="logo-big">
+                <img src="~/Content/images/big-logo.png" />
+            </div>
+            <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
+        </div>
+
+    </section>
+    
+    <section id="results" data-bind="visible: showResults()">
+        results
+    </section>
 
 </aside>
 
