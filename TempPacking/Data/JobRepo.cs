@@ -89,7 +89,7 @@ namespace TempPacking.Data
 
         public IEnumerable<Job> GetJobs(double longitude, double latitude, IList<string> skills)
         {
-            var results = jobs.Where(job => job.Skills.Intersect(skills).Any()).ToList();
+            var results = jobs.Where(job => job.Skills.Select(x => x.ToLower()).Intersect(skills.Select(x => x.ToLower())).Any()).ToList();
             results.ForEach(x => x.Location = GetLocation(longitude, latitude, 16000));
             return results;
         }
