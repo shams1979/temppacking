@@ -15,17 +15,26 @@
         var viewModel = {
             skills: ko.observableArray([]),
             destinations: ko.observableArray([]),
-            addSkill: function() {
-                thisObj.viewModel.skills.push({ name: thisObj.elements.skill.val() });
-                thisObj.elements.skill.val("");
+            addSkill: function () {
+                if (thisObj.elements.skill.val() != "") {
+                    thisObj.viewModel.skills.push({ name: thisObj.elements.skill.val() });
+                    thisObj.elements.skill.val("");
+                } else {
+                    alert("Enter a skill!");
+                }
             },
             removeSkill: function() {
                 thisObj.viewModel.skills.remove(this);
             },
             addDestination: function () {
+                if (thisObj.elements.destination.val() != "") {
                 thisObj.viewModel.destinations.push({ name: thisObj.elements.destination.val(), from: '', to: '' });
                 thisObj.elements.destination.val("");
-            },
+                } else {
+                    alert("Enter a destination!");
+                }
+                
+},
             removeDestination: function () {
                 thisObj.viewModel.destinations.remove(this);
             }

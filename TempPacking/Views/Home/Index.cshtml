@@ -23,12 +23,15 @@
     </div>
     <div class="form-group">
         <h2>Destinations </h2>
-        <div class="input-group">
-            <input type="text" class="form-control" id="country" placeholder="Enter a destination e.g. London"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" data-bind="click: addDestination">+</button>
-            </span>
-        </div>
+        <fieldset>
+            <div class="input-group">
+                <input type="text" class="form-control" id="country" placeholder="Enter a destination e.g. London"  data-provide="typeahead" autocomplete="off" spellcheck="false" dir="auto" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" data-bind="click: addDestination">+</button>
+                </span>
+            </div>
+        </fieldset>
+
         <div class="destinations clearfix" data-bind="foreach: destinations">
             <div class="destination clearfix">
                 <span class="country" data-bind="text: name"></span>
